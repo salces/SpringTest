@@ -1,7 +1,7 @@
-package com.example.pl.slc.repository;
+package com.example.pl.slc.repository.custom.impl;
 
 import com.example.pl.slc.model.User;
-import com.example.pl.slc.repository.UserRepositoryCustom;
+import com.example.pl.slc.repository.custom.UserRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

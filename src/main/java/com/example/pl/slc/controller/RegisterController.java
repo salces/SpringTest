@@ -51,10 +51,8 @@ public class RegisterController {
 
     static public class RegisterForm {
 
-        @NotBlank(message = "Required field")
         @Username
         private String username;
-        @NotBlank(message = "Required field")
         @Password
         private String password;
         private String name;

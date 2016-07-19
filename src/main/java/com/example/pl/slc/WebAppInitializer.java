@@ -1,5 +1,6 @@
 package com.example.pl.slc;
 
+import com.example.pl.slc.apect.AspectConfiguration;
 import com.example.pl.slc.controller.ControllerConfig;
 import com.example.pl.slc.repository.JpaConfig;
 import com.example.pl.slc.security.SecurityConfig;
@@ -34,7 +35,8 @@ public class WebAppInitializer implements WebApplicationInitializer {
                 SecurityConfig.class,
                 ControllerConfig.class,
                 ServiceConfig.class,
-                JpaConfig.class
+                JpaConfig.class,
+                AspectConfiguration.class
                 );
         /**
          * Next we register a {@link ContextLoaderListener} to hook to the servlet lifecycle and load the Spring context.
@@ -48,16 +50,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
          */
         ServletRegistration.Dynamic dispatcherServlet =
                 container.addServlet("dispatcher", new DispatcherServlet(rootContext));
-        /**
-         * Now all that's left is to mark the servlet to be loaded on application startup and assign a servlet mapping.
-         */
+
         dispatcherServlet.setLoadOnStartup(1);
         dispatcherServlet.addMapping("/");
-        /**
-         * You can add all kinds of {@link javax.servlet.Servlet}s, {@link javax.servlet.ServletContextListener}s,
-         * {@link javax.servlet.Filter}s and all other stuff you did in your 'web.xml'. Explore the Servlet 3 API
-         * and have fun with it ;)
-         */
     }
 
 }

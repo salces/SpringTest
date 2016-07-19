@@ -73,6 +73,10 @@ public class SimpleUserDetails implements UserDetails {
         return enabled;
     }
 
+    public Long getID() {
+        return ID;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by slc on 13.07.16.
@@ -27,6 +28,12 @@ public class User {
     @OneToOne
     @JoinColumn
     private SimpleUserDetails userDetails;
+
+    @OneToMany
+    Set<Club> ownedClubs;
+
+    @OneToMany
+    Set<Player> ownedPlayers;
 
 
     public User(){}
@@ -64,5 +71,13 @@ public class User {
 
     public UserDetails getUserDetails() {
         return userDetails;
+    }
+
+    public Set<Club> getOwnedClubs() {
+        return ownedClubs;
+    }
+
+    public Set<Player> getOwnedPlayers() {
+        return ownedPlayers;
     }
 }

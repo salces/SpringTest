@@ -1,5 +1,7 @@
 package com.example.pl.slc.validator;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
@@ -12,6 +14,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = UsernameValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
+@NotBlank(message = "Required field")
 public @interface Username {
 
     String message() default "The specified username already exists";

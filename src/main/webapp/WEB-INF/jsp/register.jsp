@@ -7,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 <html>
 <head>
     <title>Register</title>
@@ -14,34 +18,34 @@
 <body>
 
 <form:form modelAttribute="registerForm" >
-    <table>
+    <table class="table table-striped">
         <tr>
             <td>Username*</td>
             <td><form:input path="username" autocomplete="off"/></td>
-            <td><form:errors path="username"/></td>
+            <td><form:errors class="alert alert-danger" path="username"/></td>
         </tr>
         <tr>
             <td>Password*</td>
             <td><form:password path="password"/></td>
-            <td><form:errors path="password"/></td>
+            <td><form:errors class="alert alert-danger" path="password"/></td>
         </tr>
         <tr>
             <td>Name</td>
             <td><form:input path="name"/></td>
-            <td><form:errors path="name" autocomplete="off"/></td>
+            <td><form:errors class="alert alert-danger" path="name" autocomplete="off"/></td>
         </tr>
         <tr>
             <td>Surname</td>
             <td><form:input path="surname"/></td>
-            <td><form:errors path="surname"/></td>
+            <td><form:errors class="alert alert-danger" path="surname"/></td>
         </tr>
         <tr>
             <td>Email*</td>
             <td><form:input path="email" value=""/></td>
-            <td><form:errors path="email"/></td>
+            <td><form:errors class="alert alert-danger" path="email"/></td>
         </tr>
         <tr>
-            <td><form:button value="register" name="register"><b>Submit form</b></form:button></td>
+            <td><form:button class="btn btn-success" value="register" name="register"><b>Submit form</b></form:button></td>
         </tr>
     </table>
 </form:form>

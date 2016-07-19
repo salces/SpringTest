@@ -1,4 +1,4 @@
-package com.example.pl.slc.repository;
+package com.example.pl.slc.repository.custom;
 
 import com.example.pl.slc.model.User;
 import org.springframework.transaction.annotation.Transactional;

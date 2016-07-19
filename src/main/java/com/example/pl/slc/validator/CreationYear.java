@@ -7,16 +7,14 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
- * Created by slc on 13.07.16.
+ * Created by slc on 14.07.16.
  */
-
 @Documented
-@Constraint(validatedBy = PasswordValidator.class)
+@Constraint(validatedBy = CreationYearValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@NotBlank(message = "Required field")
-public @interface Password {
-    String message() default "Password must be at least 8 letters long, contain uppercase and special character!";
+public @interface CreationYear {
+    String message() default "Wrong creation year!";
 
     Class<?>[] groups() default {};
 
