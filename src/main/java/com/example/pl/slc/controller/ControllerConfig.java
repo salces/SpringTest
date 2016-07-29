@@ -1,10 +1,15 @@
 package com.example.pl.slc.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -12,11 +17,9 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by slc on 07.07.16.
- */
 
 @Configuration
 @EnableWebMvc
@@ -34,7 +37,8 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
     @Bean
     public LocaleResolver localeResolver(){
         CookieLocaleResolver resolver = new CookieLocaleResolver();
-        resolver.setDefaultLocale(new Locale("en"));
+        Locale defaultLocale = LocaleContextHolder.getLocale();
+        resolver.setDefaultLocale(defaultLocale);
         resolver.setCookieName("myLocaleCookie");
         resolver.setCookieMaxAge(4800);
         return resolver;
@@ -43,7 +47,7 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("mylocale");
+        interceptor.setParamName("language");
         registry.addInterceptor(interceptor);
     }
 
@@ -64,4 +68,10 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("home");
+    }
+
 }

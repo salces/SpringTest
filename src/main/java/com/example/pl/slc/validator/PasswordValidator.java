@@ -18,7 +18,8 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-    return containsUpperCase(s) && containsSpecialCharacter(s) && hasProperLength(s);
+        if(s == null) return false;
+        return containsUpperCase(s) && containsSpecialCharacter(s) && hasProperLength(s);
     }
 
     private boolean containsUpperCase(String s){

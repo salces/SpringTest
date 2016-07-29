@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
-/**
- * Created by slc on 14.07.16.
- */
 @Controller
 @RequestMapping("/club")
-public class ClubManagingController {
+public class ClubController {
 
     @Autowired
     private ClubRepository clubRepository;
@@ -70,6 +66,13 @@ public class ClubManagingController {
         mav.addObject("clubList",clubList);
         mav.addObject("playersList",playersList);
         mav.addObject("bindingForm",new BindPlayersToClubForm());
+        return mav;
+    }
+
+    @RequestMapping(value = "/presentation")
+    public ModelAndView getAllClubsPresentation(){
+        ModelAndView mav = new ModelAndView("/club/presentation");
+        mav.addObject("clubList",clubRepository.findAll());
         return mav;
     }
 

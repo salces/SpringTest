@@ -31,7 +31,7 @@ public class SimpleUserDetails implements UserDetails {
     private boolean credentialsNonExpired = true;
     private boolean enabled = true;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
 
     public SimpleUserDetails() {

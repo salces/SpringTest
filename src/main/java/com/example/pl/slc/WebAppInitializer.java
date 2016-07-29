@@ -1,6 +1,6 @@
 package com.example.pl.slc;
 
-import com.example.pl.slc.apect.AspectConfiguration;
+import com.example.pl.slc.aspect.AspectConfiguration;
 import com.example.pl.slc.controller.ControllerConfig;
 import com.example.pl.slc.repository.JpaConfig;
 import com.example.pl.slc.security.SecurityConfig;

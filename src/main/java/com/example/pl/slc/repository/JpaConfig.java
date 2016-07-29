@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableWebSecurity
+//@EnableWebSecurity
 @ComponentScan(basePackages = {"com.example.pl.slc.repository"})
 public class JpaConfig {
 

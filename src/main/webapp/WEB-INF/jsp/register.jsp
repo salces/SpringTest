@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: slc
@@ -20,32 +22,32 @@
 <form:form modelAttribute="registerForm" >
     <table class="table table-striped">
         <tr>
-            <td>Username*</td>
+            <td><spring:message code="register.username"/></td>
             <td><form:input path="username" autocomplete="off"/></td>
             <td><form:errors class="alert alert-danger" path="username"/></td>
         </tr>
         <tr>
-            <td>Password*</td>
+            <td><spring:message code="register.password"/></td>
             <td><form:password path="password"/></td>
             <td><form:errors class="alert alert-danger" path="password"/></td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td><spring:message code="register.name"/></td>
             <td><form:input path="name"/></td>
             <td><form:errors class="alert alert-danger" path="name" autocomplete="off"/></td>
         </tr>
         <tr>
-            <td>Surname</td>
+            <td><spring:message code="register.surname"/></td>
             <td><form:input path="surname"/></td>
             <td><form:errors class="alert alert-danger" path="surname"/></td>
         </tr>
         <tr>
-            <td>Email*</td>
+            <td><spring:message code="register.email"/></td>
             <td><form:input path="email" value=""/></td>
             <td><form:errors class="alert alert-danger" path="email"/></td>
         </tr>
         <tr>
-            <td><form:button class="btn btn-success" value="register" name="register"><b>Submit form</b></form:button></td>
+            <td><form:button class="btn btn-success" value="register" name="register"><b><spring:message code="register.button.register" /></b></form:button></td>
         </tr>
     </table>
 </form:form>

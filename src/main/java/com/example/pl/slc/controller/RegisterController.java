@@ -9,16 +9,11 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-
-/**
- * Created by slc on 13.07.16.
- */
 
 @Controller
 public class RegisterController {
@@ -38,12 +33,11 @@ public class RegisterController {
         ModelAndView mav;
 
         if (result.hasErrors()) {
-            mav = new ModelAndView("/register");
+            mav = new ModelAndView("register");
             mav.addObject("registerForm",registerForm);
         } else {
             User user = new User(registerForm);
-            userRepository.register(user);
-            System.out.println(user.getSurname());
+             userRepository.register(user);
             mav = new ModelAndView("thanksForRegistration");
         }
         return mav;

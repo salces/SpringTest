@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.InitBinder;
 
-/**
- * Created by slc on 18.07.16.
- */
+import javax.annotation.PostConstruct;
+
 
 @Component
 public class LoggedUser {
@@ -21,13 +21,13 @@ public class LoggedUser {
 
     private User user;
 
-    public SimpleUserDetails getUserDetails(){
+    public SimpleUserDetails getUserDetails() {
         SimpleUserDetails userDetails = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if(auth.isAuthenticated()){
-            Object principal= auth.getPrincipal();
-            if(principal instanceof SimpleUserDetails){
+        if (auth.isAuthenticated()) {
+            Object principal = auth.getPrincipal();
+            if (principal instanceof SimpleUserDetails) {
                 userDetails = (SimpleUserDetails) principal;
             } else {
                 throw new RuntimeException("Type conversion exception: SimpleUserDetails expected");
@@ -37,23 +37,26 @@ public class LoggedUser {
         return userDetails;
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return getUserDetails().getUsername();
     }
 
-    public User getLoggedUser(){
-        if(user == null){
-            user = userRepository.getByUserDetailsID(getUserDetails().getID());
-        }
-        return user;
+    public User getLoggedUser() {
+       return user;
     }
 
-    public Long getLoggedUserID(){
-        if(user == null){
+    public Long getLoggedUserID() {
+        if (user == null) {
             user = userRepository.getByUserDetailsID(getUserDetails().getID());
         }
         return user.getID();
     }
 
+    public void clear() {
+        this.user = null;
+    }
 
+    public void initLoggedUser() {
+        user = userRepository.getByUserDetailsID(getUserDetails().getID());
+    }
 }

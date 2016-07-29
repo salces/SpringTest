@@ -3,6 +3,7 @@ package com.example.pl.slc.model;
 import com.example.pl.slc.controller.RegisterController;
 import com.example.pl.slc.security.SimpleUserDetails;
 import com.example.pl.slc.validator.Password;
+import com.fasterxml.jackson.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,18 +28,22 @@ public class User {
 
     @OneToOne
     @JoinColumn
+    @JsonIgnore
     private SimpleUserDetails userDetails;
 
-    @OneToMany
+    @OneToMany(mappedBy = "createdBy")
+    @JsonManagedReference
     Set<Club> ownedClubs;
 
-    @OneToMany
+    @OneToMany(mappedBy = "createdBy")
+    @JsonManagedReference
     Set<Player> ownedPlayers;
 
 
-    public User(){}
+    public User() {
+    }
 
-    public User(RegisterController.RegisterForm registerForm){
+    public User(RegisterController.RegisterForm registerForm) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         this.name = registerForm.getName();
@@ -51,6 +56,11 @@ public class User {
         userDetails.setPassword(encodedPassword);
         this.userDetails = userDetails;
 
+    }
+
+    @Override
+    public String toString() {
+        return ID.toString();
     }
 
     public Long getID() {

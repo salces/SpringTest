@@ -1,6 +1,8 @@
 package com.example.pl.slc.model;
 
 import com.example.pl.slc.validator.CreationYear;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -11,10 +13,6 @@ import javax.validation.constraints.Min;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-
-/**
- * Created by slc on 14.07.16.
- */
 
 @Entity
 public class Club {
@@ -39,14 +37,16 @@ public class Club {
 
 
     @ManyToOne
+    @JsonBackReference
     private User createdBy;
 
-    @OneToMany
+    @OneToMany(mappedBy = "currentClub")
+    @JsonManagedReference
     Set<Player> currentPlayers;
 
     @Override
     public String toString() {
-        return  prefix + " " + location + " " + year;
+        return  ID.toString();
     }
 
     public void addPlayers(Set<Player> players){
@@ -119,5 +119,9 @@ public class Club {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getFullName(){
+        return prefix + " " + location + " " + year;
     }
 }

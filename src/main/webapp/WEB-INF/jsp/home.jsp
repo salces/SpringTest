@@ -1,7 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -13,24 +12,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <head>
-    <title>Add players to club</title>
-    <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
+    <title>Home page</title>
 </head>
-
+<jsp:include page="navbar.jsp"/>
 <body>
-<form:form modelAttribute="bindingForm">
-    <form:select path="club" multiple="false">
-        <c:forEach var="Club" items="${clubList}">
-            <form:option value="${Club}">${Club.prefix} ${Club.location} ${Club.year}</form:option>
-        </c:forEach>
-    </form:select>
-    <form:select path="players" multiple="true">
-        <form:options items="${playersList}" itemLabel="fullName"/>
-    </form:select>
-    <br><br><form:button name="add">Add</form:button>
-</form:form>
+
+<span id="someSpan">Home, sweet home!</span>
 </body>
 </html>

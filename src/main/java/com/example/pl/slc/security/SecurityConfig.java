@@ -1,6 +1,5 @@
 package com.example.pl.slc.security;
 
-import com.example.pl.slc.validator.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,9 +16,7 @@ import org.springframework.security.web.authentication.logout.CookieClearingLogo
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-/**
- * Created by slc on 11.07.16.
- */
+
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
+
+    @Autowired
+    CustomLogoutSuccessHandler logoutSuccessHandler;
+
+    @Autowired
+    CustomAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -45,14 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         LogoutHandler logoutHandler = new CookieClearingLogoutHandler();
 
         http
+                .csrf().disable()
                 .authorizeRequests().antMatchers("/register").permitAll().
                     and().
-                logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true).
+                logout().logoutUrl("/logout").logoutSuccessUrl("/login").logoutSuccessHandler(logoutSuccessHandler).invalidateHttpSession(true).
                 addLogoutHandler(logoutHandler).logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().
+                    and().
+
+                authorizeRequests().antMatchers("/admins/**").hasAuthority("ADMIN").
                     and().
                 authorizeRequests().anyRequest().authenticated().
                     and().
-                formLogin();
+                formLogin().successHandler(authenticationSuccessHandler);
     }
 
 

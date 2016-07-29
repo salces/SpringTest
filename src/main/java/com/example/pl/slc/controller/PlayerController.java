@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +20,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/player")
-public class PlayerManagingController {
+public class PlayerController {
 
     @Autowired
     PlayerRepository playerRepository;
@@ -49,6 +50,24 @@ public class PlayerManagingController {
         }
 
         mav.addObject("citizienshipCodes", getCitizienships());
+        return mav;
+    }
+
+    @RequestMapping("/presentation")
+    public ModelAndView presentPlayers(){
+        ModelAndView mav = new ModelAndView("player/presentation");
+
+        mav.addObject("playerList",playerRepository.findAll());
+
+        return mav;
+    }
+
+    @RequestMapping("/presentation/fromClub/{clubID}")
+    public ModelAndView playersInClub(@PathVariable Long clubID){
+        ModelAndView mav = new ModelAndView("player/presentation");
+
+        mav.addObject("playerList",playerRepository.findByCurrentClubID(clubID));
+
         return mav;
     }
 
