@@ -19,23 +19,27 @@ public enum TournamentPhase {
         this.lvl = lvl;
     }
 
-    public long getLvl() {
+    public int getLvl() {
         return lvl;
     }
 
-    private Map<Integer,TournamentPhase> getPhaseToIntMapping(){
+    private static Map<Integer,TournamentPhase> getPhaseToIntMapping(){
         Map<Integer,TournamentPhase> map = new HashMap<>();
 
         for(TournamentPhase phase : TournamentPhase.values()){
             map.put(phase.lvl,phase);
         }
-        return  map;
+
+        return map;
     }
 
     public TournamentPhase getNextPhase(){
         int nextStageLvl = this.lvl/2;
 
-        return getPhaseToIntMapping().get(nextStageLvl);
+        return fromInt(nextStageLvl);
     }
 
+    public static TournamentPhase fromInt(int lvl) {
+        return getPhaseToIntMapping().get(lvl);
+    }
 }

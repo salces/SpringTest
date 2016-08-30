@@ -7,6 +7,8 @@ import java.util.List;
 @Entity
 public class TennisMatch {
 
+    //<editor-fold desc="Fields">
+
     @Id
     @GeneratedValue
     private Long ID;
@@ -18,6 +20,11 @@ public class TennisMatch {
 
     @OneToMany(mappedBy = "tennisMatch")
     private List<MatchSet> sets;
+
+    //</editor-fold desc="Fields">
+
+    //<editor-fold desc="Get/Set">
+
 
     public Long getID() {
         return ID;
@@ -50,4 +57,7 @@ public class TennisMatch {
     public void setSets(List<MatchSet> sets) {
         this.sets = sets;
     }
+
+    //</editor-fold desc="Get/Set">
+
 }

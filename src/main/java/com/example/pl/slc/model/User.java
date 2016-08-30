@@ -19,6 +19,8 @@ import java.util.Set;
 @Entity
 public class User {
 
+    //<editor-fold desc="Fields">
+
     @Id
     @GeneratedValue
     private Long ID;
@@ -39,6 +41,9 @@ public class User {
     @JsonManagedReference
     Set<Player> ownedPlayers;
 
+    //</editor-fold desc="Fields">
+
+    //<editor-fold desc="Constructors/Eq/toString">
 
     public User() {
     }
@@ -63,31 +68,67 @@ public class User {
         return ID.toString();
     }
 
+    //</editor-fold desc="Constructors/Eq/toString">
+
+    //<editor-fold desc="Get/Set">
+
     public Long getID() {
         return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSurname() {
         return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public UserDetails getUserDetails() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public SimpleUserDetails getUserDetails() {
         return userDetails;
+    }
+
+    public void setUserDetails(SimpleUserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 
     public Set<Club> getOwnedClubs() {
         return ownedClubs;
     }
 
+    public void setOwnedClubs(Set<Club> ownedClubs) {
+        this.ownedClubs = ownedClubs;
+    }
+
     public Set<Player> getOwnedPlayers() {
         return ownedPlayers;
     }
+
+    public void setOwnedPlayers(Set<Player> ownedPlayers) {
+        this.ownedPlayers = ownedPlayers;
+    }
+
+
+    //</editor-fold desc="Get/Set">
+
 }

@@ -14,10 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.*;
 
-/**
- * Created by slc on 13.07.16.
- */
-
 @Controller
 @RequestMapping("/player")
 public class PlayerController {

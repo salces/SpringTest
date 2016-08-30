@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Entity
 public class MatchSet {
 
+    //<editor-fold desc="Fields">
+
     @Id
     @GeneratedValue
     private Long ID;
@@ -17,6 +19,11 @@ public class MatchSet {
     private int secondScore;
 
     private int orderInMatch;
+
+    //</editor-fold desc="Fields">
+
+    //<editor-fold desc="Get/Set">
+
 
     public Long getID() {
         return ID;
@@ -57,4 +64,7 @@ public class MatchSet {
     public void setOrderInMatch(int orderInMatch) {
         this.orderInMatch = orderInMatch;
     }
+
+    //</editor-fold desc="Get/Set">
+
 }

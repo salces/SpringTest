@@ -17,13 +17,18 @@ import java.util.Set;
 @Entity
 public class Club {
 
+    //<editor-fold desc="Fields">
+
     @Id
     @GeneratedValue
     private Long ID;
+
     @NotBlank(message = "Required field")
     private String prefix;
+
     @NotBlank(message = "Required field")
     private String location;
+
     @CreationYear
     private int year;
 
@@ -44,10 +49,9 @@ public class Club {
     @JsonManagedReference
     Set<Player> currentPlayers;
 
-    @Override
-    public String toString() {
-        return  ID.toString();
-    }
+    //</editor-fold>
+
+    //<editor-fold desc="Get/Set">
 
     public void addPlayers(Set<Player> players){
         currentPlayers.addAll(players);
@@ -124,4 +128,7 @@ public class Club {
     public String getFullName(){
         return prefix + " " + location + " " + year;
     }
+
+    //</editor-fold>
+
 }

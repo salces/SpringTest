@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
       integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -16,9 +17,22 @@
 
 <html>
 <head>
-    <title>Thank you for registration</title>
+    <title>Draw tournament</title>
+
+    <script>
+
+    </script>
 </head>
+<jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
+<jsp:include page="LadderDrawerJS.jsp"/>
+<script>
+
+    $(document).ready(function () {
+        var ladderDrawer = new LadderDrawer();
+        ladderDrawer.draw();
+    });
+</script>
 <body>
-Thank you!
+<div id="ladder"></div>
 </body>
 </html>

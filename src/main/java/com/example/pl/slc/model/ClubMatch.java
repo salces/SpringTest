@@ -1,13 +1,14 @@
 package com.example.pl.slc.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
-
 
 
 @Entity
 public class ClubMatch {
+
+    //<editor-fold desc="Fields">
 
     @Id
     @GeneratedValue
@@ -19,26 +20,27 @@ public class ClubMatch {
     @ManyToOne
     private Club away;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date startDatetime;
-
-
-    @OneToMany
-    private List<Player> homePlayersAvailableForMatches;
-    @OneToMany
-    private List<Player> awayPlayersAvailableForMatches;
+    private LocalDateTime startDatetime;
 
     @OneToMany
     private List<TennisMatch> individualTennisMatches;
 
-    public ClubMatch(){
+    //</editor-fold desc="Fields">
+
+    //<editor-fold desc="Constructors/Eq/toString">
+
+    public ClubMatch() {
     }
 
-    public ClubMatch(Club home, Club away, Date startDatetime) {
+    public ClubMatch(Club home, Club away, LocalDateTime startDatetime) {
         this.home = home;
         this.away = away;
         this.startDatetime = startDatetime;
     }
+
+    //</editor-fold desc="Constructors+eq+toString">
+
+    //<editor-fold desc="Get/Set">
 
     public Long getID() {
         return ID;
@@ -64,28 +66,12 @@ public class ClubMatch {
         this.away = away;
     }
 
-    public Date getStartDatetime() {
+    public LocalDateTime getStartDatetime() {
         return startDatetime;
     }
 
-    public void setStartDatetime(Date startDatetime) {
+    public void setStartDatetime(LocalDateTime startDatetime) {
         this.startDatetime = startDatetime;
-    }
-
-    public List<Player> getHomePlayersAvailableForMatches() {
-        return homePlayersAvailableForMatches;
-    }
-
-    public void setHomePlayersAvailableForMatches(List<Player> homePlayersAvailableForMatches) {
-        this.homePlayersAvailableForMatches = homePlayersAvailableForMatches;
-    }
-
-    public List<Player> getAwayPlayersAvailableForMatches() {
-        return awayPlayersAvailableForMatches;
-    }
-
-    public void setAwayPlayersAvailableForMatches(List<Player> awayPlayersAvailableForMatches) {
-        this.awayPlayersAvailableForMatches = awayPlayersAvailableForMatches;
     }
 
     public List<TennisMatch> getIndividualTennisMatches() {
@@ -95,5 +81,7 @@ public class ClubMatch {
     public void setIndividualTennisMatches(List<TennisMatch> individualTennisMatches) {
         this.individualTennisMatches = individualTennisMatches;
     }
+
+    //</editor-fold desc="Get/Set">
 
 }

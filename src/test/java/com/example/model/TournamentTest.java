@@ -2,10 +2,9 @@ package com.example.model;
 
 import com.example.pl.slc.model.Player;
 import com.example.pl.slc.model.Tournament;
-import com.example.pl.slc.model.Tournament.TooManySameTypePhasesException;
+import com.example.pl.slc.model.Tournament.TooManyPhasesOfSameTypeException;
 import com.example.pl.slc.model.TournamentStage;
 import com.example.pl.slc.model.enums.TournamentPhase;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class TournamentTest {
         assertEquals(competitorsFromTournament.size(), 10L);
     }
 
-    @Test(expected = TooManySameTypePhasesException.class)
+    @Test(expected = TooManyPhasesOfSameTypeException.class)
     public void shouldThrowExceptionWhileAddingSecondFinalStage() throws Throwable {
         TournamentStage finalStage = new TournamentStage(TournamentPhase.FINAL);
 
@@ -49,7 +48,7 @@ public class TournamentTest {
         tournament.addStage(finalStage);
     }
 
-    @Test(expected = TooManySameTypePhasesException.class)
+    @Test(expected = TooManyPhasesOfSameTypeException.class)
     public void shouldThrowExceptionWhileAddingFifthQuarterStage() throws Throwable {
         TournamentStage quarterFinalStage = new TournamentStage(TournamentPhase.QUARTERFINAL);
 
@@ -71,7 +70,7 @@ public class TournamentTest {
     @Test
     public void shouldCreateSemiFinalStage() throws Throwable{
 
-        int currentStageSize = tournament.getStages().size();
+
 
         Player[] quarterFinalCompetitors = new Player[4];
 
@@ -93,6 +92,11 @@ public class TournamentTest {
             secondQuarterFinalStage.setFirstPlayer(quarterFinalCompetitors[2]);
             secondQuarterFinalStage.setSecondPlayer(quarterFinalCompetitors[3]);
             secondQuarterFinalStage.secondWins();
+
+        tournament.addStage(firstQuarterFinalStage);
+        tournament.addStage(secondQuarterFinalStage);
+
+        int currentStageSize = tournament.getStages().size();
 
         TournamentStage returnedStage = tournament.proceedNextStage(firstQuarterFinalStage,secondQuarterFinalStage);
 

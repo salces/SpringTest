@@ -6,9 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by slc on 13.07.16.
- */
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>,UserRepositoryCustom {
@@ -18,4 +15,5 @@ public interface UserRepository extends JpaRepository<User,Long>,UserRepositoryC
     boolean existsByUsername(String username);
 
     User getByUserDetailsID(Long ID);
+
 }

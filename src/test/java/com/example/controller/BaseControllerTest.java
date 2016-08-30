@@ -21,34 +21,34 @@ import static org.mockito.Mockito.mock;
  * Created by slc on 19.07.16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = BaseControllerTest.Config.class)
-@SpringApplicationConfiguration(classes = SpringTestApplication.class)
+@ContextConfiguration(classes = BaseControllerTest.Config.class)
+//@SpringApplicationConfiguration(classes = SpringTestApplication.class)
 @WebAppConfiguration
 public abstract class BaseControllerTest {
 
-//    @Configuration
-//    @Import(ControllerConfig.class)
-//    static class Config{
-//
-//        @Bean
-//        public PlayerRepository playerRepository(){
-//            return mock(PlayerRepository.class);
-//        }
-//
-//        @Bean
-//        public ClubRepository clubRepository(){
-//            return mock(ClubRepository.class);
-//        }
-//
-//        @Bean
-//        public UserRepository userRepository(){
-//            return mock(UserRepository.class);
-//        }
-//
-//        @Bean
-//        public LoggedUser loggedUser(){
-//            return mock(LoggedUser.class);
-//        }
-//
-//    }
+    @Configuration
+    @Import(ControllerConfig.class)
+    static class Config{
+
+        @Bean
+        public PlayerRepository playerRepository(){
+            return mock(PlayerRepository.class);
+        }
+
+        @Bean
+        public ClubRepository clubRepository(){
+            return mock(ClubRepository.class);
+        }
+
+        @Bean
+        public UserRepository userRepository(){
+            return mock(UserRepository.class);
+        }
+
+        @Bean
+        public LoggedUser loggedUser(){
+            return mock(LoggedUser.class);
+        }
+
+    }
 }
