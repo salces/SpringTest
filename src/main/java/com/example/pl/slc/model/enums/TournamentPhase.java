@@ -1,7 +1,9 @@
 package com.example.pl.slc.model.enums;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public enum TournamentPhase {
@@ -33,6 +35,7 @@ public enum TournamentPhase {
         return map;
     }
 
+
     public TournamentPhase getNextPhase(){
         int nextStageLvl = this.lvl/2;
 
@@ -41,5 +44,12 @@ public enum TournamentPhase {
 
     public static TournamentPhase fromInt(int lvl) {
         return getPhaseToIntMapping().get(lvl);
+    }
+    public static List<Integer> getAllLvls(){
+        List<Integer> lvls = new ArrayList<>();
+        for (TournamentPhase phase : TournamentPhase.values()){
+            lvls.add(phase.lvl);
+        }
+        return lvls;
     }
 }

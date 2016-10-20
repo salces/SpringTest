@@ -1,14 +1,21 @@
 package com.example.pl.slc.model;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
 public class League {
-
-    //<editor-fold desc="Fields">
 
     @Id
     @GeneratedValue
@@ -24,10 +31,6 @@ public class League {
     @OneToOne
     @JoinColumn
     private Schedule schedule;
-
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Own methods">
 
     private Schedule generateSchedule(Set<Club> clubsSet, LocalDateTime startOfLeague) throws OddClubsException {
 
@@ -113,71 +116,13 @@ public class League {
         clubs.add(1, lastElement);
     }
 
-    //</editor-fold desc="Own methods">
-
-    //<editor-fold desc="Constructors/Eq/toString">
-
-    public League() {
-    }
-
     public League(Set<Club> clubs) throws OddClubsException {
                  this.schedule = generateSchedule(clubs,null);
 
     }
 
-    //</editor-fold desc="Constructors/Eq/toString">
-
-    //<editor-fold desc="Get/Set">
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public String getTitleSponsor() {
-        return titleSponsor;
-    }
-
-    public void setTitleSponsor(String titleSponsor) {
-        this.titleSponsor = titleSponsor;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-
-    //</editor-fold desc="Get/Set">
-
-    //<editor-fold desc="Inner/Exceptions">
-
     private class OddClubsException extends Throwable {
         public OddClubsException(String s) {
         }
     }
-    //</editor-fold desc="Inner/Exceptions">
-
 }

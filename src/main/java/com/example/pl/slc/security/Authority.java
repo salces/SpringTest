@@ -17,6 +17,10 @@ public class Authority implements GrantedAuthority{
     private Long ID;
     private String type;
 
+    public void setType(String type){
+        this.type = type;
+    }
+
     @Override
     public String getAuthority() {
         return type;

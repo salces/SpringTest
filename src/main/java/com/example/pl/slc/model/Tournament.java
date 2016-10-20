@@ -2,31 +2,37 @@ package com.example.pl.slc.model;
 
 
 import com.example.pl.slc.model.enums.TournamentPhase;
+import com.google.gson.annotations.Expose;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
-public class Tournament {
-
-    //<editor-fold desc="Fields">
+public class Tournament implements Serializable{
 
     @Id
     @GeneratedValue
+    @Expose
     private Long ID;
 
     @OneToMany
+    @Expose
     private List<TournamentStage> stages = new ArrayList<>();
-
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Own methods">
 
     public List<Player> getCompetitors() {
         return Stream.concat(
@@ -95,30 +101,6 @@ public class Tournament {
         }
     }
 
-    //</editor-fold desc="Own methods">
-
-    //<editor-fold desc="Get/Set">
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public List<TournamentStage> getStages() {
-        return stages;
-    }
-
-    public void setStages(List<TournamentStage> stages) {
-        this.stages = stages;
-    }
-
-
-    //</editor-fold desc="Get/Set">
-
-    //<editor-fold desc="Inner/Exceptions">
 
     public static class TooManyPhasesOfSameTypeException extends Exception {
 
@@ -130,7 +112,5 @@ public class Tournament {
 
     public static class ProceedingExternalTournamentStageNotAllowedException extends Exception {
     }
-
-    //</editor-fold desc="Inner/Exceptions">
 
 }

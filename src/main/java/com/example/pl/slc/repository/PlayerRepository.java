@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Set;
 
-/**
- * Created by slc on 13.07.16.
- */
+
 public interface PlayerRepository extends JpaRepository<Player,Long>{
     Set<Player> findByCreatedByID(Long ID);
 

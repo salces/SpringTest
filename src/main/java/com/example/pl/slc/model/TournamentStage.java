@@ -1,107 +1,62 @@
 package com.example.pl.slc.model;
 
 import com.example.pl.slc.model.enums.TournamentPhase;
-import org.crsh.cli.Man;
+import com.google.gson.annotations.Expose;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
-public class TournamentStage {
-
-    //<editor-fold desc="Fields">
+public class TournamentStage implements Serializable {
 
     @Id
     @GeneratedValue
+    @Expose
     private Long ID;
 
     @ManyToOne
+    @Expose
     private Player firstPlayer;
     @ManyToOne
+    @Expose
     private Player secondPlayer;
 
     @Enumerated(EnumType.STRING)
+    @Expose
     private TournamentPhase phase;
+
+    @Expose
+    private int phaseCode;
 
     @ManyToOne
     private TournamentStage nextStage;
+
     @ManyToOne
+    @Expose
     private Player winner;
 
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Own methods">
-
-        public void firstWins(){
+    public void firstWins(){
             this.winner = firstPlayer;
         }
 
-        public void secondWins(){
+    public void secondWins(){
             this.winner = secondPlayer;
         }
-    //</editor-fold desc="Own methods">
-
-    //<editor-fold desc="Constructors/Eq/toString">
-
-    public TournamentStage() {
-    }
 
     public TournamentStage(TournamentPhase phase) {
+        this.setPhase(phase);
+    }
+
+    public void setPhase(TournamentPhase phase){
         this.phase = phase;
+        this.phaseCode = phase.getLvl();
     }
-
-    //</editor-fold desc="Constructors/Eq/toString">
-
-    //<editor-fold desc="Get/Set">
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    public void setFirstPlayer(Player firstPlayer) {
-        this.firstPlayer = firstPlayer;
-    }
-
-    public Player getSecondPlayer() {
-        return secondPlayer;
-    }
-
-    public void setSecondPlayer(Player secondPlayer) {
-        this.secondPlayer = secondPlayer;
-    }
-
-    public TournamentPhase getPhase() {
-        return phase;
-    }
-
-    public void setPhase(TournamentPhase phase) {
-        this.phase = phase;
-    }
-
-    public TournamentStage getNextStage() {
-        return nextStage;
-    }
-
-    public void setNextStage(TournamentStage nextStage) {
-        this.nextStage = nextStage;
-    }
-
-    public Player getWinner() {
-        return winner;
-    }
-
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
-
-
-    //</editor-fold desc="Get/Set">
-
 }

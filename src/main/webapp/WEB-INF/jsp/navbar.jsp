@@ -44,6 +44,15 @@
                     <li><a href="/club/presentation">Show all clubs</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Tournament
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/tournament/create">Create new tournament</a></li>
+                    <li><a href="/tournament/presentation">Show all tournaments</a></li>
+                </ul>
+            </li>
+
             <sec:authorize access="hasAuthority('ADMIN')">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Admins

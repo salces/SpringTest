@@ -1,12 +1,18 @@
 package com.example.pl.slc.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
 public class MatchSet {
-
-    //<editor-fold desc="Fields">
 
     @Id
     @GeneratedValue
@@ -19,52 +25,5 @@ public class MatchSet {
     private int secondScore;
 
     private int orderInMatch;
-
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Get/Set">
-
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public TennisMatch getTennisMatch() {
-        return tennisMatch;
-    }
-
-    public void setTennisMatch(TennisMatch tennisMatch) {
-        this.tennisMatch = tennisMatch;
-    }
-
-    public int getFirstScore() {
-        return firstScore;
-    }
-
-    public void setFirstScore(int firstScore) {
-        this.firstScore = firstScore;
-    }
-
-    public int getSecondScore() {
-        return secondScore;
-    }
-
-    public void setSecondScore(int secondScore) {
-        this.secondScore = secondScore;
-    }
-
-    public int getOrderInMatch() {
-        return orderInMatch;
-    }
-
-    public void setOrderInMatch(int orderInMatch) {
-        this.orderInMatch = orderInMatch;
-    }
-
-    //</editor-fold desc="Get/Set">
 
 }

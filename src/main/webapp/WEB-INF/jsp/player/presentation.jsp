@@ -48,7 +48,7 @@
                 $("#des-" + id).toggle();
             });
 
-            $("div").on("dblclick",function (e) {
+            $("div").on("click",function (e) {
                 var id = e.target.id;
                 id = id.substring(4, id.length);
                 $("#des-" + id).css("top",e.pageY)

@@ -22,15 +22,15 @@
 
 <body>
 <form:form modelAttribute="bindingForm">
-    <form:select path="club" multiple="false">
+    <form:select class="form-control" path="club" multiple="false">
         <c:forEach var="Club" items="${clubList}">
             <form:option value="${Club}">${Club.prefix} ${Club.location} ${Club.year}</form:option>
         </c:forEach>
     </form:select>
-    <form:select path="players" multiple="true">
+    <form:select class="form-control" path="players" multiple="true">
         <form:options items="${playersList}" itemLabel="fullName"/>
     </form:select>
-    <br><br><form:button name="add">Add</form:button>
+    <br><br><form:button class="btn btn-success" name="add">Add</form:button>
 </form:form>
 </body>
 </html>

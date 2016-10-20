@@ -1,13 +1,21 @@
 package com.example.pl.slc.model;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
 public class TennisMatch {
 
-    //<editor-fold desc="Fields">
 
     @Id
     @GeneratedValue
@@ -20,44 +28,4 @@ public class TennisMatch {
 
     @OneToMany(mappedBy = "tennisMatch")
     private List<MatchSet> sets;
-
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Get/Set">
-
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    public void setFirstPlayer(Player firstPlayer) {
-        this.firstPlayer = firstPlayer;
-    }
-
-    public Player getSecondPlayer() {
-        return secondPlayer;
-    }
-
-    public void setSecondPlayer(Player secondPlayer) {
-        this.secondPlayer = secondPlayer;
-    }
-
-    public List<MatchSet> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<MatchSet> sets) {
-        this.sets = sets;
-    }
-
-    //</editor-fold desc="Get/Set">
-
 }

@@ -1,5 +1,7 @@
 package com.example.pl.slc.model;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,10 +9,15 @@ import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 @Entity
 public class Round {
-
-    //<editor-fold desc="Fields">
 
 
     @Id
@@ -19,10 +26,6 @@ public class Round {
 
     @OneToMany
     private Set<ClubMatch> matches;
-
-    //</editor-fold desc="Fields">
-
-    //<editor-fold desc="Own methods">
 
 
     public LocalDateTime getBeginning(){
@@ -45,26 +48,5 @@ public class Round {
         }).get().getStartDatetime();
     }
 
-    //</editor-fold desc="Own methods">
-
-    //<editor-fold desc="Get/Set">
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public Set<ClubMatch> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(Set<ClubMatch> matches) {
-        this.matches = matches;
-    }
-
-    //</editor-fold desc="Get/Set">
 
 }

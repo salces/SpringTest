@@ -19,20 +19,26 @@
 <head>
     <title>Draw tournament</title>
 
-    <script>
-
-    </script>
 </head>
-<jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
+<jsp:include page="../navbar.jsp"/>
 <jsp:include page="LadderDrawerJS.jsp"/>
 <script>
-
+    var tournament = ${tournament};
+    var stagesBoxes;
     $(document).ready(function () {
-        var ladderDrawer = new LadderDrawer();
-        ladderDrawer.draw();
+        initCanvas();
+        var ladderDrawer = new LadderDrawer(tournament);
+         stagesBoxes = ladderDrawer.draw();
     });
+
+
+    function initCanvas() {
+        var canvas = document.getElementById('ladder');
+        canvas.width = 2000;
+        canvas.height = 2000;
+    }
 </script>
 <body>
-<div id="ladder"></div>
+<canvas id="ladder"></canvas>
 </body>
 </html>
