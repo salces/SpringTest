@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
       integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -19,18 +16,16 @@
 <head>
     <style>
 
-        .myList
-        {
-            display:block;
-            float:left;
-            width:300px;
-            heigh:150px;
+        .myList {
+            display: block;
+            float: left;
+            width: 300px;
+            heigh: 150px;
             padding: 5px;
             marigin: 1em 0;
         }
 
-        .playerDescription
-        {
+        .playerDescription {
             resize: both;
             overflow: auto;
             position: absolute;
@@ -42,25 +37,25 @@
     <title>Players presentation</title>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("img").click(function(){
+            $("img").click(function () {
                 var id = e.target.id;
                 id = id.substring(4, id.length);
                 $("#des-" + id).toggle();
             });
 
-            $("div").on("click",function (e) {
+            $("div").on("click", function (e) {
                 var id = e.target.id;
                 id = id.substring(4, id.length);
-                $("#des-" + id).css("top",e.pageY)
-                $("#des-" + id).css("left",e.pageX)
+                $("#des-" + id).css("top", e.pageY)
+                $("#des-" + id).css("left", e.pageX)
                 $("#des-" + id).toggle();
             });
 
             $(document).keypress(function (e) {
-                if(e.which == 0){
+                if (e.which == 0) {
                     $(".playerDescription").hide();
                 }
-                    })
+            })
         });
     </script>
 </head>
@@ -73,24 +68,12 @@
 <ul>
     <c:forEach items="${tournamentList}" var="tournament">
         <li class="myList">
-            <div id="div-${tournament.ID}">
-                   <img id="img-${tournament.ID}" src="http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437">
-                <br>${tournament.ID}
+            <div style="text-align: center;" id="des-${tournament.ID}" class="playerDescription" hidden="true">
+                <a href="/tournament/draw/${tournament.ID}">Show ladder</a>
             </div>
-            <div id="des-${tournament.ID}" class="playerDescription" hidden="true">
-                    <a href="/tournament/draw/${tournament.ID}">Show ladder</a>
-                    <%--Name: ${player.name}<br>--%>
-                <%--Surname: ${player.surname}<br>--%>
-                <%--Citizenship: ${player.citizienship}<br>--%>
-                <%--Height: ${player.height}<br>--%>
-                <%--Dominant hand: ${player.dominantHand}<br>--%>
-                <%--Current club:--%>
-                    <%--<c:if test="${player.currentClub != null}">--%>
-                    <%--${player.currentClub.fullName}--%>
-                    <%--</c:if>--%>
-                    <%--<c:if test="${player.currentClub == null}" >--%>
-                        <%--Free player--%>
-                    <%--</c:if>--%>
+            <div id="div-${tournament.ID}">
+                <img id="img-${tournament.ID}" src="${tournament.htmlImage}">
+                <br>${tournament.name}
             </div>
         </li>
     </c:forEach>

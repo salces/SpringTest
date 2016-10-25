@@ -1,11 +1,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: slc
-  Date: 11.07.16
-  Time: 13:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -15,9 +8,6 @@
       integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
       integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -28,7 +18,7 @@
 </head>
 <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
 <body>
-<form:form modelAttribute="player">
+<form:form modelAttribute="player" method="post" enctype="multipart/form-data">
     <table class="table table-striped">
         <tr>
             <td><label><spring:message code="player.register.name"/></label></td>
@@ -61,6 +51,13 @@
                 <form:select path="citizienship">
                     <form:options items="${citizienshipCodes}"/>
                 </form:select>
+            </td>
+            <td><form:errors path="citizienship"/></td>
+        </tr>
+        <tr>
+            <td><label><spring:message code="player.register.playerImg"/></label></td>
+            <td>
+                <input type="file" name="playerImg" value="Upload" accept="image/x-png, image/gif, image/jpeg">
             </td>
             <td><form:errors path="citizienship"/></td>
         </tr>

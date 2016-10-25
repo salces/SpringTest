@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
       integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -67,22 +64,21 @@
 <c:if test="${clubList.size() == 0}">
     <b>No clubs to show</b>
 </c:if>
-<ul>
-    <c:forEach items="${clubList}" var="club">
-        <li class="myList">
-            <div id="div-${club.ID}">
-                <img id="img-${club.ID}"
-                     src="http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437">
-                <br>${club.fullName}
-            </div>
-            <div id="des-${club.ID}" class="playerDescription" hidden="true">
-                Email: ${club.email}<br>
-                <a href="${club.homePage}" target="_blank">Home page</a><br>
-                <a href="/player/presentation/fromClub/${club.ID}"> Show current players</a><br>
-
-            </div>
-        </li>
-    </c:forEach>
-</ul>
+    <ul>
+        <c:forEach items="${clubList}" var="club">
+            <li class="myList">
+                <div style="text-align: center;" id="div-${club.ID}">
+                    <img id="img-${club.ID}"
+                         src="${club.htmlImage}">
+                    <br>${club.fullName}
+                </div>
+                <div id="des-${club.ID}" class="playerDescription" hidden="true">
+                    Email: ${club.email}<br>
+                    <a href="${club.homePage}" target="_blank">Home page</a><br>
+                    <a href="/player/presentation/fromClub/${club.ID}"> Show current players</a><br>
+                </div>
+            </li>
+        </c:forEach>
+    </ul>
 </body>
 </html>

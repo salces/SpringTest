@@ -5,10 +5,7 @@ import com.example.pl.slc.model.enums.TournamentPhase;
 import com.google.gson.annotations.Expose;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +27,23 @@ public class Tournament implements Serializable{
     @Expose
     private Long ID;
 
+    @Expose
+    private String name;
+
+    @Expose
+    @ManyToOne
+    private ImageFile image;
+
     @OneToMany
     @Expose
     private List<TournamentStage> stages = new ArrayList<>();
+
+
+
+    public Tournament(String name, ImageFile image){
+        this.name = name;
+        this.image = image;
+    }
 
     public List<Player> getCompetitors() {
         return Stream.concat(
@@ -82,6 +93,14 @@ public class Tournament implements Serializable{
     public void addStage(TournamentStage s) throws TooManyPhasesOfSameTypeException {
         checkIfNotTooManySamePhases(s);
         stages.add(s);
+    }
+
+    public String getHtmlImage(){
+        if(this.image != null){
+            return this.image.getHtmlImage();
+        } else {
+            return "http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437";
+        }
     }
 
     private void checkIfStageBelongsToThis(TournamentStage stage) throws ProceedingExternalTournamentStageNotAllowedException {

@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
       integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -38,6 +35,12 @@
             border: 2px solid black;
             border-radius: 5px;
         }
+        .image{
+            width: 100%;
+            height: 100%;
+            max-height: 200px;
+            max-width: 200px;
+        }
     </style>
     <title>Players presentation</title>
     <script type="text/javascript">
@@ -62,6 +65,8 @@
                 }
                     })
         });
+
+
     </script>
 </head>
 <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
@@ -73,8 +78,8 @@
 <ul>
     <c:forEach items="${playerList}" var="player">
         <li class="myList">
-            <div id="div-${player.ID}">
-                   <img id="img-${player.ID}" src="http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437">
+            <div style="text-align: center;" id="div-${player.ID}">
+                   <img id="img-${player.ID}" class="image" src="${player.htmlImage}">
                     <br>${player.fullName}
             </div>
             <div id="des-${player.ID}" class="playerDescription" hidden="true">

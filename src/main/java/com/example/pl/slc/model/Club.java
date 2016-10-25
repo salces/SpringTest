@@ -47,6 +47,9 @@ public class Club {
     @OneToMany(mappedBy = "currentClub")
     Set<Player> currentPlayers;
 
+    @ManyToOne
+    private ImageFile image;
+
     public void addPlayers(Set<Player> players){
         currentPlayers.addAll(players);
     }
@@ -64,6 +67,13 @@ public class Club {
                     .toString();
     }
 
+    public String getHtmlImage(){
+        if(image != null){
+            return this.image.getHtmlImage();
+        } else {
+            return "http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437";
+        }
+    }
     @Override
     public String toString(){
         return this.getFullName();
